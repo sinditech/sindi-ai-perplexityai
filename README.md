@@ -1,2 +1,2 @@
-# sindi-ai-perplexity
+# sindi-ai-perplexityai
 Java Implementation of Perplexity AI
