@@ -34,6 +34,9 @@ public class ChatCompletion implements Serializable {
 	
 	@JsonbProperty
 	private UsageStatistics usage;
+	
+	@JsonbProperty
+	private String[] citations;
 
 	/**
 	 * 
@@ -144,5 +147,19 @@ public class ChatCompletion implements Serializable {
 	 */
 	public void setUsage(UsageStatistics usage) {
 		this.usage = usage;
+	}
+
+	/**
+	 * @return the citations
+	 */
+	public String[] getCitations() {
+		return citations;
+	}
+
+	/**
+	 * @param citations the citations to set
+	 */
+	public void setCitations(String[] citations) {
+		this.citations = citations;
 	}
 }

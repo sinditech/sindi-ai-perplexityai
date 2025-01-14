@@ -12,13 +12,19 @@ import java.net.http.HttpRequest.BodyPublishers;
 import java.net.http.HttpResponse;
 import java.net.http.HttpResponse.BodyHandler;
 import java.time.Duration;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Executor;
+import java.util.stream.Stream;
 
 import za.co.sindi.ai.perplexity.exception.PerplexityAIException;
 import za.co.sindi.ai.perplexity.models.ValidationError;
 import za.co.sindi.commons.net.http.WithErrorBodyHandler;
+import za.co.sindi.commons.net.sse.Event;
+import za.co.sindi.commons.net.sse.MessageEvent;
 import za.co.sindi.commons.util.Either;
 import za.co.sindi.commons.utils.Strings;
 
@@ -97,20 +103,19 @@ public abstract class AbstractPerplexityAIClient implements PerplexityAIClient {
 		return either.getLeft();
 	}
 	
-//	protected <R> Stream<R> handleStream(final Stream<String> lines, final ObjectTransformer objectTransformer, Class<R> entityClassType) {
-//		final String keyword = "data: ";
-//		List<R> result = new ArrayList<>();
-//		lines.forEach(line -> {
-//			if (line.startsWith(keyword)) {
-//				String content = line.substring(keyword.length());
-//				if (content != null && !"[DONE]".equals(content)) {
-//					result.add(objectTransformer.transform(content, entityClassType));
-//				}
-//			}
-//		});
-//		
-//		return Collections.unmodifiableList(result).stream();
-//	}
+	protected <R> Stream<R> handleStream(final Stream<Event> events, final ObjectTransformer objectTransformer, Class<R> entityClassType) {
+		List<R> result = new ArrayList<>();
+		events.forEach(event -> {
+			if (event instanceof MessageEvent message) {
+				String content = message.getData();
+				if (!"[DONE]".equals(content)) {
+					result.add(objectTransformer.transform(content, entityClassType));
+				}
+			}
+		});
+		
+		return Collections.unmodifiableList(result).stream();
+	}
 	
 	private HttpClient createHttpClient() {
 		HttpClient.Builder httpClientBuilder = HttpClient.newBuilder();

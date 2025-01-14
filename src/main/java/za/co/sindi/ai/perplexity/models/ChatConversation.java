@@ -50,6 +50,15 @@ public class ChatConversation implements Serializable {
 	
 	@JsonbProperty("frequency_penalty")
 	private Double frequencyPenalty;
+	
+	@JsonbProperty("return_related_questions")
+	private Boolean returnRelatedQuestions;
+	
+	@JsonbProperty("search_domain_filter")
+	private String[] searchDomainFilter;
+	
+	@JsonbProperty("search_recency_filter")
+	private SearchRecencyFilter searchRecencyFilter;
 
 	/**
 	 * @param messages
@@ -199,5 +208,47 @@ public class ChatConversation implements Serializable {
 	 */
 	public List<ChatMessage> getMessages() {
 		return messages;
+	}
+
+	/**
+	 * @return the returnRelatedQuestions
+	 */
+	public Boolean getReturnRelatedQuestions() {
+		return returnRelatedQuestions;
+	}
+
+	/**
+	 * @param returnRelatedQuestions the returnRelatedQuestions to set
+	 */
+	public void setReturnRelatedQuestions(Boolean returnRelatedQuestions) {
+		this.returnRelatedQuestions = returnRelatedQuestions;
+	}
+
+	/**
+	 * @return the searchDomainFilter
+	 */
+	public String[] getSearchDomainFilter() {
+		return searchDomainFilter;
+	}
+
+	/**
+	 * @param searchDomainFilter the searchDomainFilter to set
+	 */
+	public void setSearchDomainFilter(String[] searchDomainFilter) {
+		this.searchDomainFilter = searchDomainFilter;
+	}
+
+	/**
+	 * @return the searchRecencyFilter
+	 */
+	public SearchRecencyFilter getSearchRecencyFilter() {
+		return searchRecencyFilter;
+	}
+
+	/**
+	 * @param searchRecencyFilter the searchRecencyFilter to set
+	 */
+	public void setSearchRecencyFilter(SearchRecencyFilter searchRecencyFilter) {
+		this.searchRecencyFilter = searchRecencyFilter;
 	}
 }

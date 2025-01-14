@@ -15,7 +15,7 @@ import jakarta.json.bind.annotation.JsonbProperty;
 public class ValidationDetail implements Serializable {
 
 	@JsonbProperty
-	private Object[] loc;
+	private String[] loc;
 	
 	@JsonbProperty("msg")
 	private String message;
@@ -26,14 +26,14 @@ public class ValidationDetail implements Serializable {
 	/**
 	 * @return the loc
 	 */
-	public Object[] getLoc() {
+	public String[] getLoc() {
 		return loc;
 	}
 
 	/**
 	 * @param loc the loc to set
 	 */
-	public void setLoc(Object[] loc) {
+	public void setLoc(String[] loc) {
 		this.loc = loc;
 	}
 
