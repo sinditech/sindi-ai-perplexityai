@@ -59,6 +59,12 @@ public class ChatConversation implements Serializable {
 	
 	@JsonbProperty("search_recency_filter")
 	private SearchRecencyFilter searchRecencyFilter;
+	
+	@JsonbProperty("response_format")
+	private Object responseFormat;
+	
+	@JsonbProperty("web_search_options")
+	private WebSearchOptions webSearchOptions;
 
 	/**
 	 * @param messages
@@ -250,5 +256,33 @@ public class ChatConversation implements Serializable {
 	 */
 	public void setSearchRecencyFilter(SearchRecencyFilter searchRecencyFilter) {
 		this.searchRecencyFilter = searchRecencyFilter;
+	}
+
+	/**
+	 * @return the responseFormat
+	 */
+	public Object getResponseFormat() {
+		return responseFormat;
+	}
+
+	/**
+	 * @param responseFormat the responseFormat to set
+	 */
+	public void setResponseFormat(Object responseFormat) {
+		this.responseFormat = responseFormat;
+	}
+
+	/**
+	 * @return the webSearchOptions
+	 */
+	public WebSearchOptions getWebSearchOptions() {
+		return webSearchOptions;
+	}
+
+	/**
+	 * @param webSearchOptions the webSearchOptions to set
+	 */
+	public void setWebSearchOptions(WebSearchOptions webSearchOptions) {
+		this.webSearchOptions = webSearchOptions;
 	}
 }
