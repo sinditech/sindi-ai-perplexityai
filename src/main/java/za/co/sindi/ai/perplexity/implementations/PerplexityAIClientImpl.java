@@ -42,6 +42,6 @@ public class PerplexityAIClientImpl extends AbstractPerplexityAIClient {
 	public CompletableFuture<ChatCompletion> sendAsync(ChatCompletionRequest request) {
 		// TODO Auto-generated method stub
 		CompletableFuture<HttpResponse<Either<InputStream, String>>> httpResponseFuture = sendAsync(createHttpRequestBuilder(request, BodyPublishers.ofString(transformer.transform(request.getConversation()))), BodyHandlers.ofInputStream());
-		return httpResponseFuture.thenApplyAsync(httpResponse -> transformer.transform(validateAndHandleHttpResponse(httpResponse, transformer), ChatCompletion.class)).toCompletableFuture();
+		return httpResponseFuture.thenApplyAsync(httpResponse -> transformer.transform(validateAndHandleHttpResponse(httpResponse, transformer), ChatCompletion.class));
 	}
 }
